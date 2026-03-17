@@ -35,7 +35,6 @@ def plot_map_with_geometry(coords,
 
 
 # if __name__ == '__main__':
-#     # my_points = [(35.08, 33.09)]
-#     my_points = [(35.0, 32.0), (35.2, 32.5), (35.5, 33.0)]
-#
-#     plot_map_with_geometry(my_points)
+my_points = [(35.08, 33.09)]
+# my_points = [(35.0, 32.0), (35.2, 32.5), (35.5, 33.0)]
+plot_map_with_geometry(my_points)
