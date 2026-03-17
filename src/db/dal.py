@@ -1,10 +1,12 @@
+import mysql.connector 
+
+
 class Dal_queris:
 
-    def __init__(self,log_event=None, connection=None):
+    def __init__(self, log_event, connection: mysql.connector.connection.MySQLConnection):
 
         self.log_event = log_event
-        self.connection = connection
-        self.cursor = self.connection.cursor()
+        self.cursor = connection.cursor()
 
     # 1
     def Quality_target_movement_alert(self) -> dict:
@@ -23,7 +25,7 @@ class Dal_queris:
             self.log_event(level="error",message=f"Error while executing query: {e}")
  
     # 2
-    def Analysis_of_collection_sources(self):
+    def Analysis_of_collection_sources(self) -> dict:
 
         try:
 
@@ -41,7 +43,7 @@ class Dal_queris:
             self.log_event(level="error",message=f"Error while executing query: {e}")
 
     # 3
-    def Finding_new_target(self):
+    def Finding_new_target(self) -> dict:
 
         try:
         
@@ -59,7 +61,7 @@ class Dal_queris:
             self.log_event(level="error",message=f"Error while executing query: {e}")
 
     # 4
-    def Identify_old_goals_that_have_arisen(self):
+    def Identify_old_goals_that_have_arisen(self) -> dict :
 
         try:
 

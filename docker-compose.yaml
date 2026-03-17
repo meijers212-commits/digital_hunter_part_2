@@ -11,3 +11,37 @@ services:
         - "9200:9200"
       volumes:
         - esdata:/usr/share/elasticsearch/data
+
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: digital_hunter
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./students_part_2/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+  
+
+  digital_hunter_part_2:
+    build: ./src
+    container_name: digital_hunter__part_2
+    ports:
+      - 8000:8000
+    environment:
+      - sql_port=3306
+      - sql_host=mysql
+      - sql_user=root
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=digital_hunter
+    depends_on:
+      - elasticsearch
+      - mysql
+
+
+volumes:
+  esdata:
+  mysql_data:

@@ -1,7 +1,7 @@
-import mysql.connector
+import mysql.connector 
 
 class sql_db_connection:
-    def __init__(self, log_event=None, port=3306, host="localhost", user="root", password="root", database="digital_hunter"):
+    def __init__(self, log_event, port=3306, host="localhost", user="root", password="root", database="digital_hunter"):
 
         self.log_event = log_event
         self.port = port
@@ -12,7 +12,7 @@ class sql_db_connection:
         self.connection = self.Get_sql_db_connection()
 
         
-    def Get_sql_db_connection(self):
+    def Get_sql_db_connection(self) -> mysql.connector.connection.MySQLConnection:
         try:
             conn = mysql.connector.connect(
                 host = self.host,
